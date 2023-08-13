@@ -104,10 +104,65 @@ function createQuestion(i){
 
             answerTemplate.classList.remove("hide");
             answerTemplate.classList.remove("answer-template");
-            answersBox.appendChild(answerTemplate)
-            console.log(answerTemplate)
-        })
+            answersBox.appendChild(answerTemplate);
 
+            answerTemplate.addEventListener("click", function(){
+                checkAnswer(this);
+            })
+        })
+actualQuestion++
+}
+
+function checkAnswer(btn){
+    let buttons = answersBox.querySelectorAll("button");
+
+    buttons.forEach(function(buttons){
+        if(buttons.getAttribute("correct-answer") === "true"){
+            buttons.classList.add("correct-answer");
+
+            if(btn === buttons){
+                points++
+            }
+        }else{
+            buttons.classList.add("wrong-answer")
+        }
+    })
+
+    nextQuestion();
+}
+
+function nextQuestion(){
+    setTimeout(() => {
+        if(actualQuestion >= questions.length){
+            showSuccessMessage();
+            return;
+        }
+
+        createQuestion(actualQuestion);
+
+    }, 1500)
+}
+
+function showSuccessMessage(){
+
+    hideOrShowQuizz();
+
+    const score = ((points / questions.length) * 100).toFixed(2);
+    const displayScore = document.querySelector("#display-score span");
+
+    displayScore.textContent = score.toString();
+
+    const correctAnswers = document.querySelector("#correct-answer")
+
+    correctAnswers.textContent = points;
+
+    const totalQuestions = document.querySelector("#questions-qty");
+    totalQuestions.textContent = questions.length
+}
+
+function hideOrShowQuizz(){
+    quizzContainer.classList.toggle("hide");
+    scoreContainer.classList.toggle("hide");
 }
 
 init();
