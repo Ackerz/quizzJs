@@ -139,7 +139,7 @@ function nextQuestion(){
 
         createQuestion(actualQuestion);
 
-    }, 1500)
+    }, 1000)
 }
 
 function showSuccessMessage(){
