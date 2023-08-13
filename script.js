@@ -121,7 +121,7 @@ function checkAnswer(btn){
             buttons.classList.add("correct-answer");
 
             if(btn === buttons){
-                points++
+                points++;
             }
         }else{
             buttons.classList.add("wrong-answer")
@@ -157,12 +157,22 @@ function showSuccessMessage(){
     correctAnswers.textContent = points;
 
     const totalQuestions = document.querySelector("#questions-qty");
-    totalQuestions.textContent = questions.length
+    totalQuestions.textContent = questions.length;
 }
 
 function hideOrShowQuizz(){
     quizzContainer.classList.toggle("hide");
     scoreContainer.classList.toggle("hide");
 }
+
+const restartBtn = document.querySelector("#restart");
+
+restartBtn.addEventListener("click", () => {
+    actualQuestion = 0;
+    points = 0;
+
+    hideOrShowQuizz();
+    init();
+})
 
 init();
