@@ -119,7 +119,6 @@ function checkAnswer(btn){
     buttons.forEach(function(buttons){
         if(buttons.getAttribute("correct-answer") === "true"){
             buttons.classList.add("correct-answer");
-
             if(btn === buttons){
                 points++;
             }
@@ -144,15 +143,13 @@ function nextQuestion(){
 }
 
 function showSuccessMessage(){
-
     hideOrShowQuizz();
-
     const score = ((points / questions.length) * 100).toFixed(2);
     const displayScore = document.querySelector("#display-score span");
 
     displayScore.textContent = score.toString();
 
-    const correctAnswers = document.querySelector("#correct-answer")
+    const correctAnswers = document.querySelector("#correct-answers")
 
     correctAnswers.textContent = points;
 
